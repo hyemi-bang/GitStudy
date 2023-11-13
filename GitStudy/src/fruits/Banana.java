@@ -2,6 +2,7 @@ package fruits;
 
 public class Banana {
 
+	int a;
 	int qty;
 	String brand;
 	int price;
