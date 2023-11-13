@@ -16,5 +16,14 @@ public class Apple {
 	public static void main(String[] args) {
 		
 	}
+	
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public void setQuality(int quality) {
+		this.quality = quality;
+	}
+	
 
 }
