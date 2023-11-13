@@ -14,4 +14,8 @@ public class Banana {
 		return qty;
 	}
 	
+	public static void main(String[] args) {
+		
+	}
+	
 }
