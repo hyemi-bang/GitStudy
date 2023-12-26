@@ -64,6 +64,10 @@
 	<button id="pageBtn"> page 데이터 추가하기</button>
 	<br>
 	
+	<div>
+		<a href="/chap04/session/index.jsp">세션정보 보러가기</a>
+	</div>
+	
 	<script>
 		const applicationBtn = document.getElementById("applicationBtn");
 		const applicationInput = document.getElementById("applicationInput");
