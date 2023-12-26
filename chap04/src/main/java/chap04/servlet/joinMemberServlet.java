@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/joinMember")
+@WebServlet("joinMember")
 public class joinMemberServlet extends HttpServlet {
 
     @Override
@@ -24,7 +24,7 @@ public class joinMemberServlet extends HttpServlet {
         out.println("<head><title>회원가입 페이지</title></head>");
         out.println("<body>");
         out.println("<h2>회원가입 페이지</h2>");
-        out.println("<form method=\"post\" action=\"/joinMember\">");
+        out.println("<form method=\"post\" action=\"/chap04/joinMember\">");
         out.println("  아이디: <input type=\"text\" name=\"user-id\"><br>");
         out.println("  비밀번호: <input type=\"password\" name=\"user-password\"><br>");
         out.println("  <input type=\"submit\" value=\"가입\">");

@@ -13,7 +13,7 @@ public class Memo {
         return content;
     }
 
-    public String getUsername() {
+    public String getUserId() {
         return userid;
     }
 }

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 
 
-@WebServlet("/login")
+@WebServlet("/chap04/login")
 public class LoginServlet extends HttpServlet {
 	
 	@Override
@@ -22,9 +22,9 @@ public class LoginServlet extends HttpServlet {
 		String userId = req.getParameter("user-id");
 		String userPassword = req.getParameter("user-password");
 		
-		boolean isValidateMember = validateMember(userId, userPassword);
+		boolean isValidMember = validateMember(userId, userPassword);
 		
-		if(isValidateMember) {
+		if (isValidMember) {
 			// 세션 생성 및 사용자 정보 저장
 			HttpSession session = req.getSession(true);
             session.setAttribute("userId", userId);
@@ -41,22 +41,18 @@ public class LoginServlet extends HttpServlet {
                 }
             }
             
-		}else {
+		} else {
 			PrintWriter out = resp.getWriter();
 			out.print("<html><body><p>로그인 실패. 아이디/비밀번호를 다시 확인하세요.</p></body></html>");
 		}
 	}
 	
 	private boolean validateMember(String userId, String userPassword) {
-		
+		// 여기서는 간단하게 하드코딩한 예제를 사용, 실제 프로젝트에서는 DB 등을 활용
 		return "userId".equals(userId) && "userPassword".equals(userPassword);
 	}
 	
-	 private void storeUsersInServletContext(ServletContext servletContext, List<User> users) {
-	        servletContext.setAttribute("registeredUsers", users);
-	    }
-	
-		
-
-
+	private void storeUsersInServletContext(ServletContext servletContext, List<User> users) {
+        servletContext.setAttribute("registeredUsers", users);
+    }
 }
