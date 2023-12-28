@@ -118,4 +118,16 @@
 		<param-value>1.13.2</param-value>
 	</context-param>
 	
+	<!-- 에러페이지 설정 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/500.jsp</location> <!-- 경로는 webapp밑에 있는 경로여야한다 -->
+	</error-page>
+	
+	<!-- 에러페이지 / 예외별 처리 / 예외처리에 따른 매핑이 우선순위인것 같아보인다... -->
+	<error-page>
+		<exception-type>java.lang.ArithmeticException</exception-type>
+		<location>/error/arithmetic.jsp</location>
+	</error-page>
+	
 </web-app>
