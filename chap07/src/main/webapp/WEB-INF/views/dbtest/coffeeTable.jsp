@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,chap07.dto.CoffeeBeansDTO" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>coffeeBeans Table</title>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/dbtest/css/coffeeBeans.css"/>
 </head>
 <body>
 
@@ -18,10 +19,12 @@
 		if(coffeebeans != null && !coffeebeans.isEmpty()){
 			for(CoffeeBeansDTO bean : coffeebeans){
 	%>	
-	  				<div>Beans ID: <%= bean.getBeans_id() %></div>
+				<div class="coffee-beans">
+	  				<div id="beansId">Beans ID: <%= bean.getBean_id() %></div>
                     <div>Bean Name: <%= bean.getBean_name() %></div>
                     <div>Country ID: <%= bean.getCountry_id() %></div>
                     <div>Coffee Taste: <%= bean.getCoffee_taste() %></div>
+                 </div>
 	<%		
 			}
 		} else {
@@ -31,8 +34,6 @@
 		}
 	%>
 	</div>
-	
-	<h3>#Add NEW CoffeeBeans</h3>
 
 </body>
 </html>
