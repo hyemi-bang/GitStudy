@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>coffeeBeans Remove</title>
+<title>coffeeBeans Edit</title>
 </head>
 <body>
 
