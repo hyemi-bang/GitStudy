@@ -15,8 +15,18 @@
 <br><label for="beanId">Bean Id:</label>
 <input type="text" id="beanId" name="bean_id" required>
 <br>
-<input type="submit" value="RemoveCoffeeBean">
+<input type="submit" value="RemoveCoffeeBean">		<br> 
 </form>
+
+	<script>
+    function redirectToCoffeeTable() {
+        window.location.href = "<%= request.getContextPath() %>/dbtest/coffeeTable";
+    }
+	</script>
+	
+	<button onclick="redirectToCoffeeTable()">Move to Coffee Bean Table</button>
+
+
 
 </body>
 </html>

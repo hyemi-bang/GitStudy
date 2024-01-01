@@ -21,8 +21,17 @@
 		<label for="coffeeTaste">coffee Taste To Change:</label> 
 		<input type="text"id="coffeeTaste" name="coffeeTaste" required><br>
 		<br> 
-		<input type="submit" value="UpdateCoffeeBean">
+		<input type="submit" value="UpdateCoffeeBean">		<br> 
 	</form>
+	
+		<script>
+    function redirectToCoffeeTable() {
+        window.location.href = "<%= request.getContextPath() %>/dbtest/coffeeTable";
+    }
+	</script>
+	
+	<button onclick="redirectToCoffeeTable()">Move to Coffee Bean Table</button>
+
 	
 
 </body>

@@ -85,53 +85,93 @@ public class ApplicationServlet extends HttpServlet {
 			req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeTable.jsp").forward(req, res);
 
 		} else if (cmd.equals("/dbtest/add")) {
-			String beanName = req.getParameter("beanName");
-			String countryId = req.getParameter("countryId");
-			String coffeeTaste = req.getParameter("coffeeTaste");
+		    String beanName = req.getParameter("beanName");
+		    String countryId = req.getParameter("countryId");
+		    String coffeeTaste = req.getParameter("coffeeTaste");
 
-			System.out.println("beanName: " + beanName);
-			System.out.println("countryId: " + countryId);
-			System.out.println("coffeeTaste: " + coffeeTaste);
+		    System.out.println("beanName: " + beanName);
+		    System.out.println("countryId: " + countryId);
+		    System.out.println("coffeeTaste: " + coffeeTaste);
 
-			if (beanName != null && countryId != null && coffeeTaste != null) {
-				try (Connection conn = connectDatabase();
-						PreparedStatement pstmt = conn.prepareStatement(
-								"INSERT INTO coffeebeans(bean_id, bean_name, country_id, coffee_taste) VALUES(coffeebeans_id_seq.NEXTVAL,?,?,?)",
-								new String[] { "bean_id" })) {
+		    try (Connection conn = connectDatabase()) {
+		        if (beanName != null && countryId != null && coffeeTaste != null) {
+		            int beanSeqId;
 
-					pstmt.setString(1, beanName);
-					pstmt.setString(2, countryId);
-					pstmt.setString(3, coffeeTaste);
+		            String beanIdStr = req.getParameter("beanId");
+		            
+		            System.out.println("beanId: " + beanIdStr);
 
-					int rowsAffected = pstmt.executeUpdate();
-					System.out.println("Rows: " + rowsAffected);
+		            if (beanIdStr != null && !beanIdStr.isEmpty()) {
+		                try {
+		                    beanSeqId = Integer.parseInt(beanIdStr);
+		                    
+		                    // bean_id가 제공될 때
+		                    try (PreparedStatement pstmt = conn.prepareStatement(
+		                            "INSERT INTO coffeebeans(bean_id, bean_name, country_id, coffee_taste) VALUES(?,?,?,?)")) {
+		                        pstmt.setInt(1, beanSeqId);
+		                        pstmt.setString(2, beanName);
+		                        pstmt.setString(3, countryId);
+		                        pstmt.setString(4, coffeeTaste);
 
-					int beanSeqId;
-					try (ResultSet generatedBeanId = pstmt.getGeneratedKeys()) {
-						if (generatedBeanId.next()) {
-							beanSeqId = generatedBeanId.getInt(1);
-						} else {
-							throw new SQLException("Bean_id가 잘못되었습니다.");
-						}
-					}
+		                        int rowsAffected = pstmt.executeUpdate();
+		                        System.out.println("Rows: " + rowsAffected);
+		                    } catch (SQLException e) {
+		                        e.printStackTrace();
+		                        req.setAttribute("error", "데이터 추가 중 오류 발생");
+		                        req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeAdd.jsp").forward(req, res);
+		                        return;
+		                    }
+		                    
+		                } catch (NumberFormatException e) {
+		                    req.setAttribute("error", "잘못된 형식의 bean_id");
+		                    req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeAdd.jsp").forward(req, res);
+		                    return;
+		                }
+		            } else {
+		            	  // bean_id가 제공되지 않으면 시퀀스를 사용하여 생성
+		                try (PreparedStatement pstmt = conn.prepareStatement(
+		                        "INSERT INTO coffeebeans(bean_id, bean_name, country_id, coffee_taste) VALUES(coffeebeans_id_seq.NEXTVAL,?,?,?)",
+		                        new String[]{"bean_id"})) {
 
-					// 추가된 후
-					List<CoffeeBeansDTO> coffeebeansList = new ArrayList<>();
-					coffeebeansList.add(new CoffeeBeansDTO(beanSeqId, beanName, countryId, coffeeTaste));
-					req.getSession().setAttribute("addBeans", coffeebeansList);
+		                    pstmt.setString(1, beanName);
+		                    pstmt.setString(2, countryId);
+		                    pstmt.setString(3, coffeeTaste);
+
+		                    int rowsAffected = pstmt.executeUpdate();
+		                    System.out.println("Rows: " + rowsAffected);
+
+		                    try (ResultSet generatedBeanId = pstmt.getGeneratedKeys()) {
+		                        if (generatedBeanId.next()) {
+		                            beanSeqId = generatedBeanId.getInt(1);
+		                        } else {
+		                            throw new SQLException("Bean_id가 잘못되었습니다.");
+		                        }
+		                    }
+		                } catch (SQLException e) {
+		                    e.printStackTrace();
+		                    req.setAttribute("error", "데이터 추가 중 오류 발생");
+		                    req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeAdd.jsp").forward(req, res);
+		                    return;
+		                }
+		            }
+
+		            // 추가된 후
+		            List<CoffeeBeansDTO> coffeebeansList = new ArrayList<>();
+		            coffeebeansList.add(new CoffeeBeansDTO(beanSeqId, beanName, countryId, coffeeTaste));
+		            req.getSession().setAttribute("addBeans", coffeebeansList);
 
 					req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeAdd.jsp").forward(req, res);
 
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} else {
-				// 데이터가 null이면 에러 메시지를 추가하고 다시 /WEB-INF/views/dbtest/coffeeAddTable.jsp로 포워딩
-				req.setAttribute("error", "모든 필드를 입력해주세요.");
-				req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeAdd.jsp").forward(req, res);
-			}
 
-		} else if (cmd.equals("/dbtest/remove")) {
+		        } else {
+		            // 데이터가 null이면 에러 메시지를 추가하고 다시 /WEB-INF/views/dbtest/coffeeAddTable.jsp로 포워딩
+		            req.setAttribute("error", "모든 필드를 입력해주세요.");
+		            req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeAdd.jsp").forward(req, res);
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}else if (cmd.equals("/dbtest/remove")) {
 		    String beanIdStr = req.getParameter("beanId");
 
 		    // beanIdStr이 null 또는 빈 문자열인지 확인

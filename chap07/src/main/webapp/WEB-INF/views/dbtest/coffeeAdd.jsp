@@ -40,7 +40,8 @@
 
 	<h3>#Add NEW CoffeeBeans</h3>
 	<form action="<%= request.getContextPath() %>/dbtest/add" method="POST">
-		<br>
+		<label for="beanId">Bean Id:</label>
+		<input type="number" id="beanId" name="beanId"><br>
 		<label for="beanName">Bean Name:</label>
 		<input type="text" id="beanName" name="beanName" required><br>
 		<!-- required: 양식 제출할때 입력 반드시 하게 하는 값 -->
@@ -68,6 +69,7 @@
 			<p> Bean Name: <%= add.getBean_name() %></p>
 			<p> Country ID: <%= add.getCountry_id()%></p>
 			<p> Coffee Taste: <%= add.getCoffee_taste() %></p>
+			<br>
 		</li>
 		<%
 			}
@@ -75,6 +77,14 @@
 	%>
 	</ul>
 	
+	<script>
+    function redirectToCoffeeTable() {
+        window.location.href = "<%= request.getContextPath() %>/dbtest/coffeeTable";
+    }
+	</script>
+	
+	<button onclick="redirectToCoffeeTable()">Move to Coffee Bean Table</button>
+
 
 </body>
 </html>
