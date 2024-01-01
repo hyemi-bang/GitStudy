@@ -8,12 +8,11 @@
 	<!-- 
 		서버를 실행할때 web.xml의 설정을 불러 사용한다 
 		이곳의 설정은 서버를 재시작하기 전에는 반영이 되지 않는다. 
-		XML(eXtensible Markup Language) : 
-		데이터를 체계적으로 저장하기 위한 문자열 구조 
+		XML(eXtensible Markup Language) : 데이터를 체계적으로 저장하기 위한 문자열 구조 
 		XML형식으로 데이터를 저장해놓으면 다른 언어에서도 구조를 해석하여 사용할 수 있다	
 	 -->
 
-	<!-- 
+	<!-- 기존에 있었던 하위 태그들
 	<welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -24,12 +23,12 @@
  	</welcome-file-list> 
 	 -->
 	 
-	<!-- # web.xml로 서블릿 매핑하기 (@WebServlet()으로 아래 두가지 과정을 생략할 수 있다) -->
+	<!-- # web.xml로 서블릿 매핑하기 (@WebServlet()(에너테이션(Annotation)방법)으로 아래 두가지 과정을 생략할 수 있다) -->
 	
 	<!-- (1)서블릿 등록하기 -->
-	
-	<servlet>
-		<!-- web.xml 내에서 사용할 서블릿 이름(변수명 비슷한 것) -->
+	<!-- 브라우저에서 요청하는 매핑 이름에 대해 실젤 실행하는 서블릿 클래스를 설정하는 태그  -->
+	<servlet> 
+		<!-- web.xml 내에서 사용할 서블릿 이름(변수명 비슷한 것) / 다른 servlet-name 태그값과 같으면 안된다-->
 		<servlet-name>helloServlet</servlet-name>
 		<!-- 해당 서블릿의 경로 / 정확한 패키지 경로를 줘야한다 -->
 		<servlet-class>chap05.servlet.HelloServlet</servlet-class> 
@@ -42,7 +41,7 @@
 	</servlet>
 	
 	<!-- 
-		(2) 등록되어 있는 서블릿과 원하는 URL을 매핑시키기
+		(2) 등록되어 있는 서블릿과 원하는 URL을 매핑시키기/ 브라우저에서 요청하는 논리적인 서블릿을 설정
 		
 		* : 모든 것
 		/path/* : 해당경로 이후의 모든 것
@@ -57,7 +56,7 @@
 	
 		<servlet-mapping>
 		<servlet-name>helloJSP</servlet-name>
-		<url-pattern>/welcome/hello/jsp</url-pattern> <!-- 실제파일 위치와 상관없은 url/ 설정하는 대로 가는것 -->
+		<url-pattern>/welcome/hello/jsp</url-pattern> <!-- 실제파일 위치와 상관없은 url/ 설정하는 대로 가는것 /  브라우저에서 요청하는 논리적인 서블릿 이름-->
 	</servlet-mapping>
 	
 	<servlet-mapping>
