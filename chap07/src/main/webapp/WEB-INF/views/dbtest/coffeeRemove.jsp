@@ -8,5 +8,15 @@
 </head>
 <body>
 
+<h3>#CoffeeBeans</h3>
+<h3>#Remove CoffeeBeans</h3>
+
+<form action="<%=request.getContextPath() %>/dbtest/remove" method="POST">
+<br><label for="beanId">Bean Id:</label>
+<input type="text" id="beanId" name="bean_id" required>
+<br>
+<input type="submit" value="RemoveCoffeeBean">
+</form>
+
 </body>
 </html>

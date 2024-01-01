@@ -121,8 +121,7 @@ public class ApplicationServlet extends HttpServlet {
 					req.getSession().setAttribute("addBeans", coffeebeansList);
 
 					req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeAdd.jsp").forward(req, res);
-					
-					
+
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -132,7 +131,73 @@ public class ApplicationServlet extends HttpServlet {
 				req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeAdd.jsp").forward(req, res);
 			}
 
+		} else if (cmd.equals("/dbtest/remove")) {
+		    String beanIdStr = req.getParameter("beanId");
+
+		    // beanIdStr이 null 또는 빈 문자열인지 확인
+		    if (beanIdStr != null && !beanIdStr.isEmpty()) {
+		        try {
+		            Integer beanId = Integer.parseInt(beanIdStr);
+
+		            try (Connection conn = connectDatabase();
+		                 PreparedStatement pstmt = conn.prepareStatement(
+		                         "DELETE FROM coffeebeans WHERE bean_id = ?")) {
+
+		                pstmt.setInt(1, beanId);
+
+		                int rowsAffected = pstmt.executeUpdate();
+		                System.out.println("Rows Deleted: " + rowsAffected);
+
+		                // 삭제 후에 추가적인 처리가 필요하다면 여기에 추가
+
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		                req.setAttribute("error", "데이터 삭제 중 오류 발생");
+		            }
+		        } catch (NumberFormatException e) {
+		            e.printStackTrace();
+		            req.setAttribute("error", "잘못된 형식의 bean_id");
+		        }
+		    } else {
+		        req.setAttribute("error", "bean_id가 제공되지 않음");
+		    }
+
+		    req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeRemove.jsp").forward(req, res);
+		} else if (cmd.equals("/dbtest/update")) {
+			String beanIdStr = req.getParameter("beanId");
+			String beanName = req.getParameter("beanName");
+			String countryId = req.getParameter("countryId");
+			String coffeeTaste = req.getParameter("coffeeTaste");
+			
+			try (Connection conn = connectDatabase()){
+				if(beanIdStr != null && !beanIdStr.isEmpty()) {
+					try {
+						int beanId = Integer.parseInt(beanIdStr);
+						String updateQuery = "UPDATE coffeebeans SET bean_name =?,country_id = ?, coffee_taste = ? WHERE bean_id = ?";
+						try (PreparedStatement pstmt = conn.prepareStatement(updateQuery)){
+							  pstmt.setString(1, beanName);
+			                    pstmt.setString(2, countryId);
+			                    pstmt.setString(3, coffeeTaste);
+			                    pstmt.setInt(4, beanId);
+			                    
+			                    int rowsAffected = pstmt.executeUpdate();
+			                    System.out.println("Rows Updated: " + rowsAffected);
+						}
+					} catch(NumberFormatException e) {
+		                e.printStackTrace();
+		                req.setAttribute("error", "잘못된 형식의 bean_id");	
+					}
+				} else {
+					req.setAttribute("error: ", "bean_id 확인");
+				}
+			} catch (SQLException e) {
+				 req.setAttribute("error", "데이터 수정 중 오류 발생");
+				e.printStackTrace();
+			}
+			 req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeUpdate.jsp").forward(req, res);
 		}
+
+		
 	}
 
 }

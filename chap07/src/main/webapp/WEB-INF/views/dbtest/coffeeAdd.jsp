@@ -46,7 +46,7 @@
 		<!-- required: 양식 제출할때 입력 반드시 하게 하는 값 -->
 		<label for="countryId">Country ID:</label>
 		<input type="text" id="countryId" name="countryId" required><br> 
-		<labelfor="coffeeTaste">coffee Taste:</label> 
+		<label for="coffeeTaste">coffee Taste:</label> 
 		<input type="text"id="coffeeTaste" name="coffeeTaste" required><br>
 		<br> 
 		<input type="submit" value="AddCoffeeBean">
