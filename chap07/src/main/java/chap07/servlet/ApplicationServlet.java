@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,8 @@ import chap07.dto.EmployeeDTO;
 import chap07.util.UriParser;
 
 public class ApplicationServlet extends HttpServlet {
+	
+
 
 	private Connection connectDatabase() throws SQLException {
 		try {
@@ -34,14 +38,18 @@ public class ApplicationServlet extends HttpServlet {
 
 		String cmd = UriParser.getCmd(req);
 		// 커멘드가 무엇인가에 따라서 처리를 다르게한다
+		
+
 
 		if (cmd.equals("/")) {
 			req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, res);
 		} else if (cmd.equals("/dbtest/list")) {
 			// DB 에서 값을 꺼낸 후
 			/*
-			 * try { Class.forName("oracle.jdbc.OracleDriver"); } catch
-			 * (ClassNotFoundException e) { e.printStackTrace(); }
+			  try { Class.forName("oracle.jdbc.OracleDriver"); 
+			  } catch (ClassNotFoundException e) { 
+			  		e.printStackTrace();
+			   }
 			 */
 
 			try (Connection conn = connectDatabase();
@@ -235,9 +243,21 @@ public class ApplicationServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			 req.getRequestDispatcher("/WEB-INF/views/dbtest/coffeeUpdate.jsp").forward(req, res);
+			 // 선생님 해설 이렇게 다니면 유지보수가 너무 힘들어짐으로 커멘드들에 있어서 공통점을 빼냐야 한다
+			 // 1. 내가 전달 받은 uri를 문자열 형태로 커멘드(cmd)를 입력(전달)받는다.
+			 // 2. 해당 uri에 알맞은 처리를 한다 (DB작업 등)
+			 // 3. 내가 다음으로 가야할 뷰 페이지로 포워드 하거나 리다이렉트한다 
+			 // -> chap07.Controller -> 인터페이스로 Controller.java 생성 하였는데 좀 더 추상화 하기 위해 다시 지움 ㅇㅅㅇ
+			 // 저 3가지의 작업을 인터페이스로 구현해놓으면 유지보수가 편할 수 있다~ => 최종 webprocess 패키지, 인터페이스 생성
+			 
+			 // if문을 사용할 때의 문제점 - 끝도 없이 소스코드가 길어짐, 유지보수 어려움
+			 // 엄청나게 늘어날 수 있는 if문은 제거해야한다.. if문을 없애는 방법을 강구해야한다.
+			 // => 인터페이스와 Map을 활용 ( if문~ 활용까지를 하나의 커맨드패턴/디자인패턴 이라고 할 수 있다 )
+		} else if(cmd.equals("/bread/dbtest/bread/list")) {
+			
+			req.getRequestDispatcher("/WEB-INF/views/bread/list.jsp").forward(req, res);
 		}
 
-		
 	}
 
 }

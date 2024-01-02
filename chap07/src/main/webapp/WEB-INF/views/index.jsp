@@ -17,5 +17,6 @@
 		<li><a href="./dbtest/remove">다른 테이블 데이터 삭제하기</a></li>
 		<li><a href="./dbtest/update">다른 테이블 데이터 수정하기</a></li>
 	</ol>
+
 </body>
 </html>
