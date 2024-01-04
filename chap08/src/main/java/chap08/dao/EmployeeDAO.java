@@ -14,19 +14,19 @@ public class EmployeeDAO {
         String sql = "";
 
         switch (searchField) {
-            case "first_name":
-                sql = "SELECT e.* FROM employees e LEFT JOIN departments d ON e.department_id = d.department_id WHERE e.first_name = ?";
-                break;
-            case "last_name":
-                sql = "SELECT e.* FROM employees e LEFT JOIN departments d ON e.department_id = d.department_id WHERE e.last_name = ?";
-                break;
-            case "department_name":
-                sql = "SELECT e.* FROM employees e INNER JOIN departments d ON d.department_id = e.department_id WHERE d.department_name = ?";
-                break;
-            default:
-                return new ArrayList<>();
-                //검색 필드가 어느 것에도 매치되지 않을 경우 빈 리스트를 반환
-        }
+        case "first_name":
+            sql = "SELECT * FROM employees e LEFT JOIN departments d ON e.department_id = d.department_id WHERE e.first_name = ?";
+            break;
+        case "last_name":
+            sql = "SELECT e.* FROM employees e LEFT JOIN departments d ON e.department_id = d.department_id WHERE e.last_name = ?";
+            break;
+        case "department_name":
+            sql = "SELECT e.*, d.department_name, d.department_id FROM employees e INNER JOIN departments d ON d.department_id = e.department_id WHERE d.department_name = ?";
+            break;
+        default:
+            return new ArrayList<>();
+    }
+
 
         List<EmployeeDTO> employees = new ArrayList<>();
 
