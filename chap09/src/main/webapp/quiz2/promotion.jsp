@@ -12,7 +12,7 @@
 	
 	<img src ="${AdvertisementImg}" alt="광고" width ="180" /> <br>
 	
-	<div>
+	<div> <!-- input type 으로 checkbox 만들기 -->
 		<input id="hide_prom_chk" name="hide_prom" type="checkbox" /> 30초 동안 보이지 않음
 	</div>
 	

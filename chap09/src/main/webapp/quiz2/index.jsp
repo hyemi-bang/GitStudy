@@ -26,6 +26,9 @@
 		//open('/chap09/quiz/adPopup.jsp','_blank','width=400,height=600,top=100,right=100');
 		//오픈 시에 내가 연 새창의 인스턴스를 반환한다
 		const a = open('${pmURL}', '_blank', 'width=500,height=500');
+		
+		//console.log(a);
+		//a.close(); 하면 다시 닫게된다. 스크립트 안에서 제어도 가능하다
 		</script>
 	</c:if>
 </body>

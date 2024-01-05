@@ -2,7 +2,6 @@
     pageEncoding="EUC-KR"%>
     
 <%
-
 	//서버측에서 쿠키 추가하기
 	Cookie cookie = new Cookie("hideProm", "1");
 	cookie.setMaxAge(30);

@@ -14,6 +14,7 @@
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
 		<url-pattern>/assets/*</url-pattern>
+		<!-- 리소스매핑도 해줘야한다. assets 주소 로 들어올때 default서블릿으로 보내겠다 -->
 	</servlet-mapping>
 	
 	<!-- filter 등록 / 등록한 순서대로 실행된다-->
