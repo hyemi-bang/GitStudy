@@ -17,7 +17,7 @@
 		<!-- 리소스매핑도 해줘야한다. assets 주소 로 들어올때 default서블릿으로 보내겠다 -->
 	</servlet-mapping>
 	
-	<!-- filter 등록 / 등록한 순서대로 실행된다-->
+	<!-- filter 등록-->
 	<filter>
 		<filter-name>myFilter</filter-name>
 		<filter-class>chap10.filter.MyFilter</filter-class>
@@ -37,14 +37,14 @@
 		</init-param>
 	</filter>
 	
-	<!-- filter mapping -->
+	<!-- filter mapping  / 등록한 순서대로 실행된다-->
 	<filter-mapping>
 		<filter-name>myFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
 	<filter-mapping>
-		<filter-name>preventer</filter-name>
+		<filter-name>preventer</filter-name> 
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	

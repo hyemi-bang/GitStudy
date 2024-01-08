@@ -11,7 +11,7 @@ public class FilterIndexService implements Service {
 	private 해놓으면 외부에서 가져다 사용할 수 없음으로 FilterIndexService() 클래스에서 추가 작업을 한다
 	*/ 
 	
-	// 이 클래스의 인스턴스가 프로그램에서 단 하나밖에 생성되지 않도록 하는 패턴이된다
+	// 이 클래스의 인스턴스가 프로그램에서 단 하나밖에 생성되지 않도록 하는 패턴
 	
 	public static FilterIndexService getInstance() {
 		return instance;

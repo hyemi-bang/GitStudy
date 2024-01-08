@@ -13,7 +13,8 @@ public class SQLInjetionFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		String name = request.getParameter("userName"); 
+		String name = request.getParameter("userName"); //userName이 있다는것을 가정
+		//request.getParameterNames(); 로 모든 이름을 꺼내서 검사할 수도 있다.
 		
 		// 위험한 SQL문자열이 있는지 검사한다 ( 주석(--), 세미콜론(;) 등등 )
 		// if(name.contains())

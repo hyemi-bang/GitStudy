@@ -15,6 +15,7 @@ import chap10.service.Service;
 public class ApplicationServlet extends HttpServlet {
 	
 	static Map<String, Service> uriMapping = new HashMap<>();
+	
 	static String REDIRECT_PREFIX = "redirect::";
 	static int REDIRECT_PREFIX_LEN = REDIRECT_PREFIX.length();
 	
@@ -35,9 +36,8 @@ public class ApplicationServlet extends HttpServlet {
 		getInstance()로 사용하려고 함		
 		*/
 		uriMapping.put("GET:/filter", FilterIndexService.getInstance());
+		//Calendar.getInstance(); 도 getInstance()를 사용했다.
 		
-
-		// 디자인패턴 -> 
 	}
 	
 	@Override
@@ -47,11 +47,11 @@ public class ApplicationServlet extends HttpServlet {
 		String cmd =req.getMethod() + ":" + req.getRequestURI().substring(req.getContextPath().length());
 		String nextView = uriMapping.get(cmd).service(req);
 	
-		if(nextView.startsWith("REDIRECT_PREFIX")) {
+			//nextView.startsWith("redirect::"); -> 변수로 지정해서 REDIRECT_PREFIX 사용하게된것
+		if(nextView.startsWith(REDIRECT_PREFIX)) {
 			resp.sendRedirect(nextView.substring(REDIRECT_PREFIX_LEN));
 		} else {
 			req.getRequestDispatcher(nextView).forward(req, resp);
-			
 		}
 	}
 
