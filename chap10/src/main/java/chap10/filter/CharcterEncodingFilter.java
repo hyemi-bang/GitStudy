@@ -27,7 +27,7 @@ public class CharcterEncodingFilter implements Filter {
 		   // request.setCharacterEncoding("EUC-KR"); -> 초기화 파라미터 init()에 설정한 필터를 셋팅하고 비어있는 init을 채운다.
 	      request.setCharacterEncoding(charset);
 	      
-	      System.out.println("요청을 "+charset+"으로 해석하도록 설정했습니다.");
+	      System.out.println("요청을 " + charset + "으로 해석하도록 설정했습니다.");
 	      
 	      chain.doFilter(request, response);
 	   }
