@@ -5,6 +5,12 @@
 const adPopup = document.getElementById("advertisementPopup"); // 광고 팝업 창
 const checkBox = document.getElementById("checkBox"); // 광고 팝업 창 내 체크박스
 
+
+if(checkBox.checked){
+	fetch('/chap09/quiz/close');
+	window.close();
+}
+
 // 체크박스 옆에 닫기 버튼 클릭해도 창 닫히게 
 /* checkBox.addEventListener('click', (e) => { // closeAdBtn -> checkBox
 	 closeAdvertisement();

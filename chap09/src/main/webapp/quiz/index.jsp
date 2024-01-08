@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,6 @@
 	</ul>
 	
 	<script>
-	
 	open('/chap09/quiz/adPopup.jsp','_blank','width=400,height=600,top=100,right=100');
 	
 	</script>

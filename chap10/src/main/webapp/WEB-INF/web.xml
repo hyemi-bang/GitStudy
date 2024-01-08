@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>chap10</display-name>
+
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>chap10.servlet.ApplicationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/assets/*</url-pattern>
+		<!-- 리소스매핑도 해줘야한다. assets 주소 로 들어올때 default서블릿으로 보내겠다 -->
+	</servlet-mapping>
+	
+	<!-- filter 등록 / 등록한 순서대로 실행된다-->
+	<filter>
+		<filter-name>myFilter</filter-name>
+		<filter-class>chap10.filter.MyFilter</filter-class>
+	</filter>
+	
+	<filter>
+		<filter-name>preventer</filter-name>
+		<filter-class>chap10.filter.SQLInjetionFilter</filter-class>
+	</filter>
+	
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>chap10.filter.CharcterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encodingType</param-name>
+			<param-value>EUC-KR</param-value>
+		</init-param>
+	</filter>
+	
+	<!-- filter mapping -->
+	<filter-mapping>
+		<filter-name>myFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>preventer</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<!--		<url-pattern>/경로를지정해줘도 되</url-pattern>  -->
+	</filter-mapping>
+	
+	<listener>
+		<listener-class>chap10.listener.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>chap10.listener.RequestListener</listener-class>
+	</listener>
+</web-app>
