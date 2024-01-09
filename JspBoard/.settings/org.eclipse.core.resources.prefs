@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/resources/board/js/detail.js=EUC-KR
+encoding//src/main/webapp/resources/board/js/detailReply.js=EUC-KR
+encoding//src/main/webapp/resources/board/js/modi.js=EUC-KR
 encoding/<project>=UTF-8
