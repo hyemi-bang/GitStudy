@@ -21,8 +21,7 @@ replyContent.addEventListener('keydown', (e) => {
 			} else if(replyPassword.value.trim() ==='' || replyPassword.value.length <5){
 				alert('비밀번호는 4글자 이상이어야합니다');
 					return;
-			}
-			
+			}			
 			replyForm.submit();  
 		} else{
 			//Shift + Enter -> 댓글에서 줄 바꿔주기

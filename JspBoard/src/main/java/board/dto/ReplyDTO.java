@@ -13,6 +13,10 @@ public class ReplyDTO {
 	private Integer bad_count;
 	private Date reply_date;
 	
+	public ReplyDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public ReplyDTO(Integer reply_id, Integer board_id, String reply_writer, String reply_content,
 			String reply_password, Integer good_count, Integer bad_count, Date reply_date) {
 		this.reply_id = reply_id;
