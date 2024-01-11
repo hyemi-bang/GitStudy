@@ -18,6 +18,12 @@ public class BoardDAO {
       try (
             Connection conn = DBConnector.getConnection(); 
             PreparedStatement pstmt = conn.prepareStatement(sql);
+    		  /*
+    		  PreparedStatement 인터페이스 SQL 쿼리를 실행하기 위한 객체,
+    		  사용하면 쿼리를 미리 컴파일하고, 나중에 동일한 쿼리를 여러 번 실행할 때 효율적이다.
+    		  conn.prepareStatement(sql)을 통해 pstmt를 생성
+    		  (sql) 은 실행할 SQL 쿼리문
+    		  */ 
          ) {
          pstmt.setString(1, dto.getBoard_title());
          pstmt.setString(2, dto.getBoard_content());
@@ -25,6 +31,9 @@ public class BoardDAO {
          pstmt.setString(4, dto.getBoard_writer());
 
          return pstmt.executeUpdate();
+         /*
+         executeUpdate()를 호출하여 INSERT, UPDATE, DELETE 등의 쿼리를 실행하고 영향을 받은 행의 수를 반환
+         */
 
       } catch (SQLException e) {
          e.printStackTrace();
