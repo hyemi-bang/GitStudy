@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class SecureTools {
 	
-	public static String hashPassword(String password) {
+	public static String genHashPassword(String password) {
 		try {
 			// 매개변수 password 를 getBytes(byte[])로 digest 해서 
 			// MessageDigest 클래스의 getInstance 메서드를 사용하며

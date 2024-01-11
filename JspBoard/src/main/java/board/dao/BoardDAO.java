@@ -15,15 +15,14 @@ public class BoardDAO {
       String sql = "INSERT INTO myboard(board_id, board_title, board_content, board_password, board_writer) "
             + "VALUES(myboard_id_seq.nextval, ?, ?, ?, ?)";
 
-      try (
-            Connection conn = DBConnector.getConnection(); 
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+      try (DBSession session = DBConnector.getSession(); 
+  			PreparedStatement pstmt = session.prepareStatement(sql);
     		  /*
     		  PreparedStatement 인터페이스 SQL 쿼리를 실행하기 위한 객체,
     		  사용하면 쿼리를 미리 컴파일하고, 나중에 동일한 쿼리를 여러 번 실행할 때 효율적이다.
     		  conn.prepareStatement(sql)을 통해 pstmt를 생성
     		  (sql) 은 실행할 SQL 쿼리문
-    		  */ 
+    		   */ 
          ) {
          pstmt.setString(1, dto.getBoard_title());
          pstmt.setString(2, dto.getBoard_content());
@@ -35,7 +34,7 @@ public class BoardDAO {
          executeUpdate()를 호출하여 INSERT, UPDATE, DELETE 등의 쿼리를 실행하고 영향을 받은 행의 수를 반환
          */
 
-      } catch (SQLException e) {
+      } catch (Exception e) {
          e.printStackTrace();
          return -1;
       }
@@ -49,9 +48,8 @@ public class BoardDAO {
       
       List<BoardDTO> list = new ArrayList<>();
       
-      try (
-         Connection conn = DBConnector.getConnection();
-         PreparedStatement pstmt = conn.prepareStatement(sql);
+      try (DBSession session = DBConnector.getSession(); 
+  			PreparedStatement pstmt = session.prepareStatement(sql);
          ResultSet rs = pstmt.executeQuery();
       ) {
          while (rs.next()) {
@@ -66,7 +64,7 @@ public class BoardDAO {
             list.add(dto);
          }
          return list;
-      } catch (SQLException e) {
+      } catch (Exception e) {
          e.printStackTrace();
          return null;
       }
@@ -78,9 +76,8 @@ public class BoardDAO {
       
       BoardDTO detail = new BoardDTO();
       
-      try (
-            Connection conn = DBConnector.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+      try (DBSession session = DBConnector.getSession(); 
+  			PreparedStatement pstmt = session.prepareStatement(sql);
          ) {
          pstmt.setInt(1, pk);
          
@@ -95,7 +92,7 @@ public class BoardDAO {
             detail.setBoard_password(rs.getString("board_password"));
          } 
          return detail;
-      } catch (SQLException e) {
+      } catch (Exception e) {
          e.printStackTrace();
          return null;
       }
@@ -105,13 +102,12 @@ public class BoardDAO {
       String sql = "UPDATE myboard SET view_count=view_count+1 "
             + "WHERE board_id=?";
       
-      try (
-         Connection conn = DBConnector.getConnection();
-         PreparedStatement pstmt = conn.prepareStatement(sql);
+      try (DBSession session = DBConnector.getSession(); 
+  			PreparedStatement pstmt = session.prepareStatement(sql);
       ) {
          pstmt.setInt(1, pk);
          return pstmt.executeUpdate();
-      } catch (SQLException e) {
+      } catch (Exception e) {
          e.printStackTrace();
          return -1;
       } 
@@ -121,8 +117,8 @@ public class BoardDAO {
 	   String sql ="UPDATE myboard SET board_title=?,board_content=? WHERE board_id=?";
 	   
 	  
-	try( Connection conn = DBConnector.getConnection();
-		 PreparedStatement pstmt = conn.prepareStatement(sql);	
+	try( DBSession session = DBConnector.getSession(); 
+			PreparedStatement pstmt = session.prepareStatement(sql);
 	) {
 		
 		pstmt.setString(1, dto.getBoard_title());
@@ -131,7 +127,7 @@ public class BoardDAO {
 		
 		return pstmt.executeUpdate();
 		
-	} catch (SQLException e) {
+	} catch (Exception e) {
 		e.printStackTrace();
 		return -1;
 	}
@@ -141,13 +137,13 @@ public class BoardDAO {
    
    public int delete(int pk) {
 	   String sql = "DELETE FROM myboard WHERE board_id = ?";
-	   try (Connection conn = DBConnector.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+	   try (DBSession session = DBConnector.getSession(); 
+				PreparedStatement pstmt = session.prepareStatement(sql);
 		){
 		
 		   pstmt.setInt(1, pk);
 		   return pstmt.executeUpdate();
-	} catch (SQLException e) {
+	} catch (Exception e) {
 		e.printStackTrace();
 		return -1;
 	}

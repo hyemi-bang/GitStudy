@@ -34,7 +34,7 @@ public class BoardWriteService implements Service {
 		dto.setBoard_content(board_content);
 		dto.setBoard_writer(board_writer);
 		// setter 에서 hash 작업을 하면 db에서 값을 꺼내 조회할 때에도 hash 변환이 되므로 바람직하지 않음
-		dto.setBoard_password(SecureTools.hashPassword(board_password));
+		dto.setBoard_password(SecureTools.genHashPassword(board_password));
 		// DAO를 통해 게시판에 글을 작성하고, 결과를 받아온다
 		int result = dao.write(dto);
 		

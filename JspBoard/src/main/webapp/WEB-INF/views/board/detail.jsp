@@ -37,6 +37,15 @@
 	
 	<hr>
 	
+	<c:forEach items="${replies }" var="reply">
+		<div>
+		[${reply.reply_writer}]
+		${reply.reply_content} 
+		<span>${reply.reply_date}</span>
+		</div>
+	</c:forEach>
+	
+	<hr>
 	<div id="replyWriteDiv">
 		<textarea id="replyContent" name="reply_content"  cols="60" rows="5" form="replyForm"></textarea> <br>
 		´ñ±Û <input id="replyWriter" type="text" name="reply_writer" form="replyForm"/>
