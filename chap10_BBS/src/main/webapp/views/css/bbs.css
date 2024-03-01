@@ -1,0 +1,32 @@
+/* navigation styles */
+.navi-header {
+  display: flex;
+  align-items: center;
+}
+
+.navi-brand {
+  margin-right: auto;
+  font-size: 1.5em;
+  color: #333; /* Adjust color as needed */
+  text-decoration: none;
+}
+
+.navi-toggle {
+  display: none; /* Hide toggle button by default for larger screens */
+}
+
+
+/* button styles */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db; /* Adjust color as needed */
+  color: #fff; /* Adjust color as needed */
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-right {
+  margin-top: 10px;
+  margin-right: 10px;
+}

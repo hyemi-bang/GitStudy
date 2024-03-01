@@ -1,0 +1,41 @@
+#beans-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.coffee-beans {
+    border: 1px solid blue;
+    padding: 10px;
+    text-align: center;
+}
+
+#beansId {
+    background-color: darkcyan;
+    color: white;
+    font-weight: bold;
+}
+
+#variety {
+    margin-top: 20px;
+    border: 1px solid blue;
+}
+
+#variety h4 {
+    font-size: 18px; 
+}
+
+#variety p {
+    font-weight: normal; 
+    color: black; 
+}
+
+#taste {
+    font-style: italic;
+    color: green;
+}
+
+#country-codes {
+    font-weight: bold;
+    color: darkorange;
+}

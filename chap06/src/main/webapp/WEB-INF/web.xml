@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+
+	<!-- 서블릿 동작과정
+	
+	1. 클라이언트 -> http://IP주소:포트번호/프로젝트이름(컨텍스트이름)/서블릿매핑이름
+	2. 톰캣 컨테이너 -> 해당 서블릿이 메모리에 존재하는 지 확인
+	3.			-> 해당 서블릿을 메모리에 로드
+	4.			-> init() 호출 -> 인스턴스를 메모리에 로드 
+	5.			-> doGet() or doPost()를 호출
+	6.			-> 결과응답
+	7.			-> 클라이언트에게 전달~
+	  -->
+	  
+    <!-- 맨 처음 브라우저에서 서블랫 매핑이름으로 요청하면 최초의 요청임으로 
+    해당 서블랫 클래스의 init()를 호출해 초기화한 후 메모리에 로드되어 있는 doGet()이나 doPost()를 호출하여 서비스하는데,
+    다른 브라우저에서 동일한 서블릿 매핑 이름으로 요청하면 미리 로드된 클래스의 세블릿이 재사용되므로
+    init()은 호출하지 않고 doGet()이나 doPost()를 호출하여 서비스한다.
+    서블릿은 메모리에 존재하는 서블릿을 재사용함으로 훨씬 빠르고 효율적으로 동작한다.
+    
+      -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>chap06.servlet.ApplicationServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+		<!-- / : 아무런 매핑에도 걸리지 않은 요청이 가게 되는 곳 (else의 역할) -->
+	</servlet-mapping>
+
+</web-app>
