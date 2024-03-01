@@ -1,21 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>·Î±×ÀÎ</title>
+<meta charset="UTF-8">
+<title>ë¡œê·¸ì¸</title>
 </head>
 <body>
 
-	<button onclick="location.href='/chap04/quiz2/loginForm.jsp';"> ·Î±×ÀÎ ÇÏ·¯°¡±â </button>
-	<button onclick="location.href='/chap04/quiz2/registerForm.jsp';"> È¸¿ø°¡ÀÔ </button>
+	<button onclick="location.href='/chap04/quiz2/loginForm.jsp';"> ë¡œê·¸ì¸ í•˜ëŸ¬ê°€ê¸° </button>
+	<button onclick="location.href='/chap04/quiz2/registerForm.jsp';"> íšŒì›ê°€ì… </button>
 
-	<h3>#¸ğµç ¾îÆ®¸®ºäÆ® Âï¾îº¸±â</h3>
+	<h3>#ëª¨ë“  ì–´íŠ¸ë¦¬ë·°íŠ¸ ì°ì–´ë³´ê¸°</h3>
 
 	<ul>
 		<%
-		// scope.getArrtibuteNames() : ÇØ´ç ¿µ¿ªÀÇ ¸ğµç ¾îÆ®¸®ºäÆ® ÀÌ¸§µéÀ» ²¨³¾ ¼ö ÀÖ´Â °´Ã¼¸¦ ¹İÈ¯
+		// scope.getArrtibuteNames() : í•´ë‹¹ ì˜ì—­ì˜ ëª¨ë“  ì–´íŠ¸ë¦¬ë·°íŠ¸ ì´ë¦„ë“¤ì„ êº¼ë‚¼ ìˆ˜ ìˆëŠ” ê°ì²´ë¥¼ ë°˜í™˜
 		java.util.Enumeration<String> names = application.getAttributeNames();
 
 		while (names.hasMoreElements()) {
@@ -32,7 +32,7 @@
 	
 	if (request.getParameter("error") != null) {
 		if (request.getParameter("dup") != null) {
-		out.print("alert('ÀÌ¹Ì »ç¿ëÁßÀÎ ¾ÆÀÌµğ ÀÔ´Ï´Ù!')");
+		out.print("alert('ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ì•„ì´ë”” ì…ë‹ˆë‹¤!')");
 	} else {
 		out.print("alert('')");
 		}

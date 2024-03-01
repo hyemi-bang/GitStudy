@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("joinMember")
+@WebServlet("/joinMember")
 public class joinMemberServlet extends HttpServlet {
 
     @Override

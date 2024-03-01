@@ -1,21 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>¸Ş¸ğ ¸ŞÀÎ</title>
+<meta charset="UTF-8">
+<title>ë©”ëª¨ ë©”ì¸</title>
 </head>
 <body>
 
 	<h1>Memo Main</h1>
-	<!-- ¸Ş¸ğ´Â »ç¿ëÀÚÀÇ ¾ÆÀÌµğ¿¡ µû¶ó ´Ş¶óÁö´Â °ªÀÌ¾î¾ßÇÑ´Ù. -->
-	<!-- »ç¿ëÀÚ°¡ À¥ºê¶ó¿ìÀú¸¦ ²¯´Ù Ä×À»´ë ³²¾ÆÀÖ¾î¾ßÇÑ´Ù. ¼¼¼Ç¿¡ ÀúÀåÇØµÎ¸é »ç¶óÁö°Ô µÊÀ¸·Î µ¥ÀÌÅÍº£ÀÌ½º¿¡ ÀúÀåµÇ¾î¾ßÇÏÁö¸¸ 
-		ÇöÀç´Â ¾îÇÃ¸®ÄÉÀÌ¼Ç ¿µ¿ª¸¸À» »ç¿ëÇÒ ÁÙ ¾Ë±â¶§¹®¿¡ °Å±â¿¡ ÀúÀåÇÒ¿¹Á¤ÀÌ´Ù.
-		¼­¹öÄÄÇ»ÅÍ¿¡ ÆÄÀÏÀ» ³»º¸³Â´Ù°¡ ´Ù½Ã ÀĞ¾î¿À´Â ¹æ¹ıµµ ÀÖ´Ù -->
-	<!--  ¸Ş¸ğ Ãß°¡¿µ¿ª / ´Ù¾çÇÑ ¸Ş¸ğµéÀÌ µé¾î°¡ÀÖ´Â ¿µ¿ªÀÌ ÀÖÀ¸¸é µÉ °Í °°´Ù -->
+	<!-- ë©”ëª¨ëŠ” ì‚¬ìš©ìì˜ ì•„ì´ë””ì— ë”°ë¼ ë‹¬ë¼ì§€ëŠ” ê°’ì´ì–´ì•¼í•œë‹¤. -->
+	<!-- ì‚¬ìš©ìê°€ ì›¹ë¸Œë¼ìš°ì €ë¥¼ ê»ë‹¤ ì¼°ì„ëŒ€ ë‚¨ì•„ìˆì–´ì•¼í•œë‹¤. ì„¸ì…˜ì— ì €ì¥í•´ë‘ë©´ ì‚¬ë¼ì§€ê²Œ ë¨ìœ¼ë¡œ ë°ì´í„°ë² ì´ìŠ¤ì— ì €ì¥ë˜ì–´ì•¼í•˜ì§€ë§Œ 
+		í˜„ì¬ëŠ” ì–´í”Œë¦¬ì¼€ì´ì…˜ ì˜ì—­ë§Œì„ ì‚¬ìš©í•  ì¤„ ì•Œê¸°ë•Œë¬¸ì— ê±°ê¸°ì— ì €ì¥í• ì˜ˆì •ì´ë‹¤.
+		ì„œë²„ì»´í“¨í„°ì— íŒŒì¼ì„ ë‚´ë³´ëƒˆë‹¤ê°€ ë‹¤ì‹œ ì½ì–´ì˜¤ëŠ” ë°©ë²•ë„ ìˆë‹¤ -->
+	<!--  ë©”ëª¨ ì¶”ê°€ì˜ì—­ / ë‹¤ì–‘í•œ ë©”ëª¨ë“¤ì´ ë“¤ì–´ê°€ìˆëŠ” ì˜ì—­ì´ ìˆìœ¼ë©´ ë  ê²ƒ ê°™ë‹¤ -->
 	<form action="/chap04/quiz2/logout" method="POST">
-	<button>·Î±×¾Æ¿ô</button>
+	<button>ë¡œê·¸ì•„ì›ƒ</button>
 	</form>
 	
 	<div>
@@ -25,7 +25,7 @@
 		java.util.List<String> memoList = (java.util.List) infoMap.get("memoList");
 
 		if (memoList == null) {
-			out.print("<div>¸Ş¸ğ°¡ ¾ÆÁ÷ ¾ø½À´Ï´Ù.</div>");
+			out.print("<div>ë©”ëª¨ê°€ ì•„ì§ ì—†ìŠµë‹ˆë‹¤.</div>");
 		} else {
 			for (String memo : memoList) {
 				out.print(String.format("<div class=\'memo\'>%s</div>", memo));
@@ -35,9 +35,9 @@
 	</div>
 
 	<form action="./add" method="POST">
-		<!-- ./add -> MemoServletÀ¸·Î °¡´Â °ÍÀÌ´Ù~ -->
+		<!-- ./add -> MemoServletìœ¼ë¡œ ê°€ëŠ” ê²ƒì´ë‹¤~ -->
 		<input name="memo" type="text">
-		<button>Ãß°¡</button>
+		<button>ì¶”ê°€</button>
 	</form>
 </body>
 </html>

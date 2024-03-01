@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>х╦©Ь╟║ют фДюлаЖ</title>
+<meta charset="UTF-8">
+<title>М ▄Л⌡░Й╟─Л·┘ М▌≤Л²╢Л╖─</title>
 </head>
 <body>
 
-	<h3>#х╦©Ь╟║ют</h3>
+	<h3>#М ▄Л⌡░Й╟─Л·┘</h3>
 
 	<form action="/chap04/quiz2/register" method="POST">
 		ID <input name="id" type="name"/> <br>
 		PASSWORD <input name="pwd" type="password"/><br>
-		<input type="submit" value="╟║ютго╠Б">
+		<input type="submit" value="Й╟─Л·┘М∙≤Й╦╟">
 	</form>
 </body>
 </html>
